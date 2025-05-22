@@ -1,0 +1,37 @@
+// ✅ Review.java
+package com.honbap.backend.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "review")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+public class Review {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    private int rating;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
+    private String imageUrl;
+    private boolean receiptVerified;
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+}
