@@ -1,6 +1,7 @@
 package com.honbap.backend.service;
 
 import com.honbap.backend.dto.ReviewRequest;
+import com.honbap.backend.dto.ReviewResponse;
 import com.honbap.backend.model.Review;
 import com.honbap.backend.model.User;
 import com.honbap.backend.model.Restaurant;
@@ -99,5 +100,30 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
+    public List<ReviewResponse> getReviewsByUser(Long userId) {
+        List<Review> reviews = reviewRepository.findByUserId(userId);
+        return reviews.stream()
+                .map(this::convertToDto) // 여기서 Review → ReviewResponse 변환
+                .toList();
+    }
 
+    private ReviewResponse convertToDto(Review review) {
+        Restaurant restaurant = review.getRestaurant();
+        String categoryName = restaurant.getCategoryName(); // "음식점 > 중식 > 양꼬치"
+        String[] parts = categoryName.split(">");
+        String midCategory = parts.length >= 2 ? parts[1].trim() : parts[0].trim();
+
+        return new ReviewResponse(
+                review.getId(),
+                review.getContent(),
+                review.getImageUrl(),
+                review.getRating(),
+                review.isReceiptVerified(),
+                review.getCreatedAt().toString(),
+                review.getUser().getNickname(),
+                review.getUser().getId(),
+                restaurant.getName(),
+                midCategory // ✅ 여기서 category 포함
+        );
+    }
 }

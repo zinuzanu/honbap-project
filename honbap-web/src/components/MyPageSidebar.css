@@ -1,0 +1,146 @@
+.mypage-sidebar {
+  width: 420px;
+  height: 100vh;
+  background-color: #fefefe;
+  border-left: 1px solid #ccc;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 1.2rem;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.sidebar-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.summary-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.summary-cards .card {
+  flex: 1;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 0.8rem;
+  text-align: center;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.summary-cards .card h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.chart-section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.chart-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* 파이 차트 전용 영역 스타일 */
+.pie-chart-section {
+  margin-bottom: 2rem;
+}
+
+/* 파이차트 전용 중앙 정렬 */
+.pie-chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-btn {
+  padding: 0.4rem 0.8rem;
+  background-color: #eee;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.category-btn.active {
+  background-color: #7b68ee;
+  color: white;
+  font-weight: bold;
+}
+
+.review-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.1s;
+}
+
+.review-card:hover {
+  transform: scale(1.01);
+}
+
+.review-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.review-meta {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.4rem;
+}
+
+.review-content {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.delete-btn {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+}

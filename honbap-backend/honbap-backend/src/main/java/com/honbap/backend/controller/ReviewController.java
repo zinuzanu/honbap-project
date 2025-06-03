@@ -52,13 +52,20 @@ public class ReviewController {
                         r.isReceiptVerified(),
                         r.getCreatedAt().toString(),
                         r.getUser().getNickname(),
-                        r.getUser().getId()
+                        r.getUser().getId(),
+                        r.getRestaurant().getName(),
+                        r.getRestaurant().getCategoryName()
                 ))
                 .toList();
 
         return ResponseEntity.ok(result);
     }
 
+    // ✅ 특정 사용자의 리뷰 전체 조회 (마이페이지 용)
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ReviewResponse>> getReviewsByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(reviewService.getReviewsByUser(userId)); // 🔥 여기서 변환 안 함!
+    }
 
 
     @GetMapping("/average/{restaurantId}")

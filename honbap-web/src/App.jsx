@@ -9,6 +9,8 @@ import OpenHoursDisplay from "./components/OpenHoursDisplay";
 import RestaurantDetail from "./pages/RestaurantDetail";
 import ReviewForm from "./components/ReviewForm";
 import ReviewList from "./components/ReviewList";
+import MyPageSidebar from "./components/MyPageSidebar";
+
 import "./App.css";
 
 function App() { 
@@ -39,6 +41,11 @@ function Main() {
   const sidebarContentRef = useRef(null);
   const mapRef = useRef(null);
   const [refreshReviews, setRefreshReviews] = useState(false);
+  const [sidebarMode, setSidebarMode] = useState(null); // 'mypage', 'detail'
+  const [selectedRestaurantId, setSelectedRestaurantId] = useState(null);
+  const [sortOption, setSortOption] = useState("ratingDesc");  
+  
+
   const handleResetToDefault = () => {
     setSelectedRestaurant(null);
     setSearchKeyword("");
@@ -134,6 +141,61 @@ useEffect(() => {
   };
 }, []);
 
+const openMyPage = () => {
+  setSidebarMode("mypage");
+};
+
+const openRestaurantDetail = (restaurantId) => {
+  setSelectedRestaurantId(restaurantId);
+  setSidebarMode("detail");
+};
+
+const handleRestaurantSelectById = ({ name, reviewId }) => {
+  const selected = restaurants.find(r => r.name === name);
+  if (selected) {
+    setSelectedRestaurant(selected);
+    setSidebarMode("detail");
+    setActiveTab("review");
+    setHighlightReviewId(reviewId); // 리뷰 ID 전달
+  } else {
+    alert("⚠️ 해당 음식점을 찾을 수 없습니다.");
+  }
+};
+
+
+  const [highlightReviewId, setHighlightReviewId] = useState(null);
+
+useEffect(() => {
+  if (highlightReviewId) {
+    const el = document.getElementById(`review-${highlightReviewId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // 초기화는 나중에 ReviewList에서 시각 강조 후 제거
+  }
+}, [highlightReviewId]);
+
+const handleSortChange = (e) => {
+  setSortOption(e.target.value);
+};
+
+const sortedResults = [...searchResults].sort((a, b) => {
+  switch (sortOption) {
+    case "ratingDesc":
+      return (b.averageRating || 0) - (a.averageRating || 0);
+    case "ratingAsc":
+      return (a.averageRating || 0) - (b.averageRating || 0);
+    case "reviewDesc":
+      return (b.reviewCount || 0) - (a.reviewCount || 0);
+    case "reviewAsc":
+      return (a.reviewCount || 0) - (b.reviewCount || 0);
+    default:
+      return 0;
+  }
+});
+
+
   useEffect(() => {
     axios.get("http://localhost:8080/api/map/search", {
       params: { keyword: "음식점", region: "인천", source: "db" },
@@ -169,7 +231,7 @@ useEffect(() => {
         <LogoutButton />
         <button
           className="common-btn mypage-btn"
-          onClick={() => window.location.href = "/mypage"}
+          onClick={openMyPage} // ✅ 사이드바 열도록 수정
         >
           마이페이지 📈
         </button>
@@ -184,6 +246,14 @@ useEffect(() => {
       >
         카카오 로그인
       </button>
+    )}
+
+    {sidebarMode === "mypage" && (
+      <MyPageSidebar
+        onClose={() => setSidebarMode(null)}
+        onRestaurantClick={(id) => openRestaurantDetail(id)}
+        onRestaurantSelectById={handleRestaurantSelectById}
+      />
     )}
   </div>
 
@@ -215,14 +285,31 @@ useEffect(() => {
             </div>
             
             {preSearchState && (
-              <div className="go-back-wrapper">
-                <button className="go-back-btn" onClick={handleGoBack}>
-                  {afterCardClick ? "← 뒤로가기" : "← 돌아가기"}
-                </button>
-              </div>
+              <>
+                <div className="go-back-wrapper">
+                  <button className="go-back-btn" onClick={handleGoBack}>
+                    {afterCardClick ? "← 뒤로가기" : "← 돌아가기"}
+                  </button>
+                </div>
+                {searched && !afterCardClick && selectedRestaurant === null && (
+                  <div className="sort-options" style={{ margin: "10px 0", textAlign: "center" }}>
+                    <label htmlFor="sortSelect" style={{ marginRight: "10px" }}>정렬 기준:</label>
+                    <select
+                      id="sortSelect"
+                      value={sortOption}
+                      onChange={(e) => setSortOption(e.target.value)}
+                      style={{ padding: "6px", borderRadius: "5px" }}
+                    >
+                      <option value="ratingDesc">⭐ 별점 높은 순</option>
+                      <option value="ratingAsc">⭐ 별점 낮은 순</option>
+                      <option value="reviewDesc">📝 리뷰 많은 순</option>
+                      <option value="reviewAsc">📝 리뷰 적은 순</option>
+                    </select>
+                  </div>
+                )}
+              </>
             )}
-
-            
+        
             <div className="sidebar-content" ref={sidebarContentRef}>
               {!selectedRestaurant && !searched && (
                 <div className="category-buttons">
@@ -371,31 +458,34 @@ useEffect(() => {
 
                 </>
               ) : searched ? (
-                searchResults.length > 0 ? (
-                  searchResults.map((r, idx) => (
-                    <div
-                      key={r.kakaoPlaceId}
-                      className="restaurant-card"
-                      onMouseEnter={() => {
-                        if (mapRef.current?.highlightMarkerByRestaurant) {
-                          mapRef.current.highlightMarkerByRestaurant(r);
-                        }
-                      }}
-                      onMouseLeave={() => {
-                        if (mapRef.current?.clearHighlightedMarker) {
-                          mapRef.current.clearHighlightedMarker();
-                        }
-                      }}
-                      onClick={() => handleRestaurantClick(r)}
-                    >
-                      <div className="restaurant-rank">{idx + 1}.</div>
-                      <div className="restaurant-name">{r.name}</div>
-                      <div className="restaurant-category">{r.categoryName}</div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="empty-result">😥 검색 결과가 없습니다</div>
-                )
+                    sortedResults.length > 0 ? (
+                      sortedResults.map((r, idx) => (
+                        <div
+                          key={r.kakaoPlaceId}
+                          className="restaurant-card"
+                          onMouseEnter={() => {
+                            if (mapRef.current?.highlightMarkerByRestaurant) {
+                              mapRef.current.highlightMarkerByRestaurant(r);
+                            }
+                          }}
+                          onMouseLeave={() => {
+                            if (mapRef.current?.clearHighlightedMarker) {
+                              mapRef.current.clearHighlightedMarker();
+                            }
+                          }}
+                          onClick={() => handleRestaurantClick(r)}
+                        >
+                          <div className="restaurant-rank">{idx + 1}.</div>
+                          <div className="restaurant-name">{r.name}</div>
+                          <div className="restaurant-category">{r.categoryName}</div>
+                          <div className="restaurant-meta">
+                            ⭐ {r.averageRating?.toFixed(1) || "0.0"}점 | 리뷰 {r.reviewCount || 0}개
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="empty-result">😥 검색 결과가 없습니다</div>
+                    )
               ) : (
                 <p className="hint-text">검색어를 입력하고 🔍 버튼을 누르세요!</p>
               )}

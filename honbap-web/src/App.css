@@ -673,3 +673,38 @@ html, body, #root {
 .review-image:hover {
   transform: scale(1.03);   /* 약간 확대 효과 */
 }
+
+.highlighted-review {
+  animation: highlight-fade 2s ease;
+  background-color: #fffbe6;
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  transition: background-color 0.5s ease;
+}
+
+@keyframes highlight-fade {
+  0% {
+    background-color: #fffbe6;
+    border-color: #ffcc00;
+  }
+  100% {
+    background-color: white;
+    border-color: transparent;
+  }
+}
+
+.sort-options {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.sort-options select {
+  padding: 6px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+.restaurant-meta {
+  font-size: 13px;
+  color: gray;
+  margin-top: 4px;
+}
