@@ -49,8 +49,9 @@
 ### 1. 레포지토리 클론
 ```bash
 git clone [https://github.com/zinuzanu/honbap-project.git](https://github.com/zinuzanu/honbap-project.git)
+```
 
-2. 데이터베이스 설정
+### 2. 데이터베이스 설정
 로컬 MySQL 서버에 honbap_db (또는 원하는 이름) 데이터베이스를 생성합니다.
 
 src/main/resources/application.properties 파일에서 데이터베이스 접속 정보를 설정합니다.
