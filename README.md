@@ -41,7 +41,7 @@
 아래 썸네일을 클릭하여 프로젝트의 주요 기능 시연 영상을 확인하실 수 있습니다.
 
 ### 1. 마이페이지 기능
-[![영상 썸네일: 사용자 별 마이페이지(https://img.youtube.com/vi/AhPPp0VoFfY/hqdefault.jpg)](https://youtu.be/AhPPp0VoFfY)
+[![영상 썸네일: 사용자 별 마이페이지](https://img.youtube.com/vi/AhPPp0VoFfY/hqdefault.jpg)](https://youtu.be/AhPPp0VoFfY)
 
 ### 2. 카테고리 검색 1
 [![영상 썸네일: 카테고리 버튼을 이용한 검색 & 가게 상세 정보1](https://img.youtube.com/vi/PnykLpH2PcQ/hqdefault.jpg)](https://youtu.be/PnykLpH2PcQ)
