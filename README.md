@@ -49,3 +49,32 @@
 ### 1. 레포지토리 클론
 ```bash
 git clone [https://github.com/zinuzanu/honbap-project.git](https://github.com/zinuzanu/honbap-project.git)
+
+2. 데이터베이스 설정
+로컬 MySQL 서버에 honbap_db (또는 원하는 이름) 데이터베이스를 생성합니다.
+
+src/main/resources/application.properties 파일에서 데이터베이스 접속 정보를 설정합니다.
+
+Properties
+
+# application.properties 예시
+spring.datasource.url=jdbc:mysql://localhost:3306/honbap_db?serverTimezone=UTC&characterEncoding=UTF-8
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+spring.jpa.hibernate.ddl-auto=update
+3. 프로젝트 실행
+Bash
+
+./gradlew bootRun
+4. 접속 확인
+서버가 성공적으로 실행되면, 웹 브라우저에서 다음 주소로 접속할 수 있습니다.
+
+주소: http://localhost:8080
+
+🧑‍💻 기여자
+[본인 이름/닉네임] (백엔드 개발 및 DB 설계 담당)
+
+🔗 관련 링크
+GitHub Repository: https://github.com/zinuzanu/honbap-project
+
+기술 회고/문서: (노션/블로그 링크)
