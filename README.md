@@ -48,16 +48,3 @@
 
 ### 3. 카테고리 검색 2
 [![영상 썸네일: 카테고리 버튼을 이용한 검색 & 가게 상세 정보2](https://img.youtube.com/vi/ddkmf0wTAqI/hqdefault.jpg)](https://youtu.be/ddkmf0wTAqI)
-
----
-
-## 🧑‍💻 기여자
-
-**[본인 이름/닉네임] (기획, 설계, 개발, 배포 전 과정 단독 진행)**
-
----
-
-## 🔗 관련 링크
-
-* **GitHub Repository:** `https://github.com/zinuzanu/honbap-project`
-* **기술 회고/문서:** (노션/블로그 링크 기재)
