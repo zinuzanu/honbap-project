@@ -37,6 +37,11 @@
 
 ---
 
+🧑‍💻 기여자
+[김진우] (백엔드/프론트 전체 개발)
+
+---
+
 ## 🚀 프로젝트 실행 방법
 
 로컬 환경에서 프로젝트를 실행하기 위한 단계별 가이드입니다.
@@ -59,23 +64,17 @@ src/main/resources/application.properties 파일에서 데이터베이스 접속
 Properties
 
 # application.properties 예시
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/honbap_db?serverTimezone=UTC&characterEncoding=UTF-8
 spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 spring.jpa.hibernate.ddl-auto=update
-3. 프로젝트 실행
-Bash
-
+```
+### 3. 프로젝트 실행
+```Bash
 ./gradlew bootRun
-4. 접속 확인
+```
+### 4. 접속 확인
 서버가 성공적으로 실행되면, 웹 브라우저에서 다음 주소로 접속할 수 있습니다.
 
 주소: http://localhost:8080
-
-🧑‍💻 기여자
-[본인 이름/닉네임] (백엔드 개발 및 DB 설계 담당)
-
-🔗 관련 링크
-GitHub Repository: https://github.com/zinuzanu/honbap-project
-
-기술 회고/문서: (노션/블로그 링크)
