@@ -1,9 +1,9 @@
-# 🍚 Honbap Project
+# 🍚 Honbap Project (개인 프로젝트)
 
 ## 💡 프로젝트 개요
 
 이 프로젝트는 혼자 식사하는 사용자들을 위한 소셜 커뮤니티 웹 서비스의 백엔드 시스템입니다.
-사용자들이 익명 또는 실명으로 게시물을 작성하고 댓글을 통해 소통하며, 식사 정보 및 리뷰를 공유할 수 있도록 안정적인 서버 환경을 구축하는 데 중점을 두었습니다.
+**기획부터 설계, 개발, 배포까지 전 과정을 단독으로 진행**했습니다.
 
 ---
 
@@ -21,60 +21,46 @@
 
 ---
 
-## ⚙️ 주요 기능 및 구현 사항
+## ⚙️ 주요 기능 및 기술적 기여
 
 ### 1. 사용자 관리 및 보안
 * **Spring Security 기반 인증/인가:** 사용자 로그인, 회원가입, 세션 관리를 Spring Security를 사용하여 안전하게 구현했습니다.
-* **권한 관리:** 일반 사용자(USER)와 관리자(ADMIN) 권한을 구분하여 접근 가능한 페이지를 제어했습니다.
 
-### 2. 게시판 (Board) 기능
-* **CRUD 구현:** 게시물 생성(Create), 조회(Read), 수정(Update), 삭제(Delete) 기능을 RESTful 원칙에 따라 구현했습니다.
+### 2. 데이터 통합 및 가공 (핵심 기여)
+* **다중 소스 데이터 통합:** **카카오 지도 API**에서 제공하지 않는 상세 정보를 보강하기 위해 **네이버 지도 크롤링**을 병행했습니다.
+* **데이터 가공:** 수집된 정보를 정제 및 매칭하여 데이터베이스에 최종 반영하는 **데이터 통합 파이프라인**을 백엔드에서 구현했습니다.
+
+### 3. 게시판 및 CRUD 구현
+* **게시판 (Board) 기능:** 게시물 생성/조회/수정/삭제 기능을 RESTful 원칙에 따라 구현했습니다.
 * **댓글 시스템:** 댓글 작성자만 수정/삭제가 가능하도록 접근 제어를 적용했습니다.
 
-### 3. 데이터베이스 관리 (Persistence)
-* **MySQL 설계:** 서비스 요구사항에 맞춰 테이블 스키마를 설계했습니다.
-* **트랜잭션 관리:** 서비스 계층에서 데이터의 일관성을 유지하기 위한 트랜잭션 처리를 적용했습니다.
+---
+
+## 🖼️ 데모 및 실행 화면
+
+이 프로젝트는 **직접 수집/가공한 데이터**를 기반으로 작동합니다. 라이브 데모 서버가 없다면, **주요 기능을 보여주는 스크린샷이나 GIF 영상**을 첨부하여 동작을 확인해 주세요.
+
+### (메인 서비스 화면 스크린샷/GIF 첨부)
+
+### 
+
+[Image of Board List Screen]
+ (게시판 목록 화면 스크린샷 첨부)
+
+### 
+
+[Image of Detailed Map Information]
+ (지도와 통합된 상세 정보 화면 스크린샷 첨부)
 
 ---
 
-🧑‍💻 기여자
-[김진우] (백엔드/프론트 전체 개발)
+## 🧑‍💻 기여자
+
+**[본인 이름/닉네임] (기획, 설계, 개발, 배포 전 과정 단독 진행)**
 
 ---
 
-## 🚀 프로젝트 실행 방법
+## 🔗 관련 링크
 
-로컬 환경에서 프로젝트를 실행하기 위한 단계별 가이드입니다.
-
-### 전제 조건
-* JDK 17 이상
-* MySQL 8.0 이상
-* Gradle 7.x 이상
-
-### 1. 레포지토리 클론
-```bash
-git clone [https://github.com/zinuzanu/honbap-project.git](https://github.com/zinuzanu/honbap-project.git)
-```
-
-### 2. 데이터베이스 설정
-로컬 MySQL 서버에 honbap_db (또는 원하는 이름) 데이터베이스를 생성합니다.
-
-src/main/resources/application.properties 파일에서 데이터베이스 접속 정보를 설정합니다.
-
-Properties
-
-# application.properties 예시
-```
-spring.datasource.url=jdbc:mysql://localhost:3306/honbap_db?serverTimezone=UTC&characterEncoding=UTF-8
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
-spring.jpa.hibernate.ddl-auto=update
-```
-### 3. 프로젝트 실행
-```Bash
-./gradlew bootRun
-```
-### 4. 접속 확인
-서버가 성공적으로 실행되면, 웹 브라우저에서 다음 주소로 접속할 수 있습니다.
-
-주소: http://localhost:8080
+* **GitHub Repository:** `https://github.com/zinuzanu/honbap-project`
+* **기술 회고/문서:** (노션/블로그 링크 기재)
