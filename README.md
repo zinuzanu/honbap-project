@@ -36,21 +36,18 @@
 
 ---
 
-## 🖼️ 데모 및 실행 화면
+## 🎥 프로젝트 시연 영상
 
-이 프로젝트는 **직접 수집/가공한 데이터**를 기반으로 작동합니다. 라이브 데모 서버가 없다면, **주요 기능을 보여주는 스크린샷이나 GIF 영상**을 첨부하여 동작을 확인해 주세요.
+아래 썸네일을 클릭하여 프로젝트의 주요 기능 시연 영상을 확인하실 수 있습니다.
 
-### (메인 서비스 화면 스크린샷/GIF 첨부)
+### 1. 마이페이지 기능
+[![영상 썸네일: 사용자 별 마이페이지(https://img.youtube.com/vi/AhPPp0VoFfY/hqdefault.jpg)](https://youtu.be/AhPPp0VoFfY)
 
-### 
+### 2. 카테고리 검색 1
+[![영상 썸네일: 카테고리 버튼을 이용한 검색 & 가게 상세 정보1](https://img.youtube.com/vi/PnykLpH2PcQ/hqdefault.jpg)](https://youtu.be/PnykLpH2PcQ)
 
-[Image of Board List Screen]
- (게시판 목록 화면 스크린샷 첨부)
-
-### 
-
-[Image of Detailed Map Information]
- (지도와 통합된 상세 정보 화면 스크린샷 첨부)
+### 3. 카테고리 검색 2
+[![영상 썸네일: 카테고리 버튼을 이용한 검색 & 가게 상세 정보2](https://img.youtube.com/vi/ddkmf0wTAqI/hqdefault.jpg)](https://youtu.be/ddkmf0wTAqI)
 
 ---
 
